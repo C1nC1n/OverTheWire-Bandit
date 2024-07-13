@@ -9,7 +9,7 @@ Nulinis lygis yra gana lengvas – visa užduotis yra prisijungti prie laborator
 
 <img width="482" alt="Screenshot 2024-07-13 at 13 32 43" src="https://github.com/user-attachments/assets/c1bc0a1a-028a-46af-a3de-ed317f29cc03">
 
-# Level 0  > 1
+## Level 0  > 1
 
 The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
 
@@ -21,7 +21,7 @@ Atsijungiame nuo bandit0 ssh ir jungiamės per ssh į bandit1@bandit.labs.overth
 
 <img width="489" alt="Screenshot 2024-07-13 at 13 58 29" src="https://github.com/user-attachments/assets/9a0454f8-4eef-4980-bcd6-4e0905611261">
 
-# Level 1 > 2 
+## Level 1 > 2 
 
 The password for the next level is stored in a file called - located in the home directory
 
@@ -67,7 +67,7 @@ Naudojau kitą komandą file ./*, kuri nustato failų tipus, o ./* nurodo visus 
 
 <img width="487" alt="Screenshot 2024-07-13 at 18 58 04" src="https://github.com/user-attachments/assets/74445eba-df81-4ccb-86b3-d4ec3132faa5">
 
-# Level 5 > 6
+## Level 5 > 6
 
 The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
 human-readable
@@ -78,13 +78,33 @@ Atsidarau inhere direktoriją ir, pagal užduotį, pasirenku ieškoti failo paga
 
 <img width="484" alt="Screenshot 2024-07-13 at 19 21 40" src="https://github.com/user-attachments/assets/6015540a-8419-464f-a5d8-287bcc4e6d41">
 
-# Level 6 > 7 
+## Level 6 > 7 
 
 The password for the next level is stored somewhere on the server and has all of the following properties:
-
 owned by user bandit7
 owned by group bandit6
 33 bytes in size
 
+Naudoju find, kad surastų bandit7 vartotoją, kuris yra bandit6 grupėje ir failo dydis yra 33 baitai:
 
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
 
+Tačiau gaunu daug klaidų dėl leidimų (Permission denied), todėl pridedu 2>/dev/null, kad nukreipti klaidų pranešimus, ir randu atsakymą, kur slypi mano kitas slaptažodis:
+
+/var/lib/dpkg/info/bandit7.password
+
+<img width="487" alt="Screenshot 2024-07-13 at 19 36 05" src="https://github.com/user-attachments/assets/e5aaaa80-e8af-4e5c-8422-173a8965224a">
+
+## Level 7 > 8
+
+The password for the next level is stored in the file data.txt next to the word millionth
+
+Atidarius data.txt pasipyle daug vardu ir slaptazodziu tai tiesiog atrinkti millionth naudojau grep komanda
+
+cat data.txt | grep millionth 
+
+<img width="485" alt="Screenshot 2024-07-13 at 19 39 22" src="https://github.com/user-attachments/assets/8decf9fc-86ad-4a2b-be71-c5eda3aaeffb">
+
+## Level 8 > 9 
+
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once.
