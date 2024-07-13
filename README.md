@@ -108,3 +108,42 @@ cat data.txt | grep millionth
 ## Level 8 > 9 
 
 The password for the next level is stored in the file data.txt and is the only line of text that occurs only once.
+
+Galvojau, kol nepradėjau gilintis į duotus komandų pavyzdžius, kaip naudoti uniq.
+
+Naudojau komandą sort data.txt | uniq -c, kuri surūšiuoja data.txt teksto eilutes ir paskaičiuoja, kiek kartų kiekviena eilutė pasikartojo. Patikrines rezultatus, radau, kad vienas slaptažodis pasikartojo tik vieną kartą, ko ir ieškojau.
+
+Pagalvojau, kad jei būtų daugiau tokio teksto, būtų nepatogu ieškoti per visą failą. Todėl pridėjau | grep 1 arba perarašiau kodą į:
+
+cat data.txt | sort | uniq -u
+
+<img width="377" alt="Screenshot 2024-07-13 at 22 36 18" src="https://github.com/user-attachments/assets/9cd0f11d-07a8-442b-a26f-4c0c28853503">
+
+## Level 9 > 10 
+
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+Prie galimų naudojamų komandų prisidejo strings, tad vėlgi žiūriu, ką ji gali padaryti.
+
+Strings spausdina tekstą, o ne "heroglifus", todėl lengviau naršyti tekste.
+
+Dabar kai jau pašalinau "heroglifus" ir žinau , kad slaptažodis yra prie kelių = simbolių, galime panaudoti
+strings data.txt | grep =.
+
+<img width="429" alt="Screenshot 2024-07-13 at 22 47 30" src="https://github.com/user-attachments/assets/b0d3f771-17a7-4e37-ae87-0ebb98a1395c">
+
+## Level 10 > 11 
+
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
+
+Čia puikiai atsimenu iš knygos, kaip reikia dekoduoti iš Base64, tačiau gaila, neturiu teisių kurti failų, kuriuose galėčiau išsaugoti atšifruotą kodą.
+
+Todėl naudoju base64 -d data.txt.
+
+<img width="424" alt="Screenshot 2024-07-13 at 22 58 03" src="https://github.com/user-attachments/assets/6d352f66-ac15-4dcf-8255-9ce56b46f392">
+
+## Level 11 > 12 
+
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+
