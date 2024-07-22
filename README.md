@@ -171,3 +171,10 @@ Ir zinodemas kur yra pasleptas slaptazodis atidariau su cat /etc/bandit_pass/ban
 
 ## Level 14 > 15 
 
+The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+Tiesiog prisijungiau prie localhost 30000 per telnet 
+
+<img width="485" alt="Screenshot 2024-07-22 at 12 53 14" src="https://github.com/user-attachments/assets/48597e5e-f5dd-4812-924f-8d6223e96c55">
+
+
