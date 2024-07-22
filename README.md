@@ -177,4 +177,52 @@ Tiesiog prisijungiau prie localhost 30000 per telnet
 
 <img width="485" alt="Screenshot 2024-07-22 at 12 53 14" src="https://github.com/user-attachments/assets/48597e5e-f5dd-4812-924f-8d6223e96c55">
 
+## Level 15 > 16
+
+The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
+Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+
+openssl s_client -ign_eof -connect localhost:30001 prisijungiame prie serverio naudojant SSL/TLS.
+
+<img width="496" alt="Screenshot 2024-07-22 at 15 44 36" src="https://github.com/user-attachments/assets/e87b108b-973a-4fe9-ae1b-0a29b696a0a6">
+
+## Level 16 > 17
+
+The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+Iš pradžių nuskenavau portus nuo 31000 iki 32000 naudodamas nmap su -sT. Gavau porą portų, prie kurių bandžiau prisijungti. Radau tinkamą portą, kur prisijungęs gavau RSA raktą. Su vim sukūriau failą sshkey.private ir įkėliau ten RSA raktą. Tada pakeičiau failo teises su chmod 600 sshkey.private ir prisijungiau prie bandit17 naudodamas ssh -i ./sshkey.private bandit17@localhost -p 2220.
+
+<img width="488" alt="Screenshot 2024-07-22 at 16 20 57" src="https://github.com/user-attachments/assets/807d8e5b-cf6b-4bfa-a0f1-cb68e61f11b7">
+
+## Level 17 > 18
+
+There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+
+Prie komandų, kurios gali padėti išspręsti šį lygį, pamačiau diff kuri lygina du failus, nurodydama jų skirtumus.
+
+<img width="485" alt="Screenshot 2024-07-22 at 16 28 02" src="https://github.com/user-attachments/assets/7ad4b3d2-856f-4908-9a38-ace0ee6a918e">
+
+## Level 18 > 19
+
+The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+Tiesiog ssh bandit18@bandit.labs.overthewire.org -p 2220 pridedu cat readme ir suvedu slaptazodi ir gaunu kita bandit 19 slaptazodi
+
+<img width="485" alt="Screenshot 2024-07-22 at 17 22 58" src="https://github.com/user-attachments/assets/50017b1d-6510-46c5-aae7-bf48faa8d140">
+
+## Level 19 > 20
+
+To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+19 lygyje setuid yra naudojau, nes ji uteiktia specialias teises programai, kad ji galėtų pasiekti išteklius ar atlikti veiksmus, kurių įprastai naudotojas negalėtų atlikti dėl leidimų apribojimų.
+
+<img width="487" alt="Screenshot 2024-07-22 at 17 32 11" src="https://github.com/user-attachments/assets/7ad8042f-716c-469c-a2a4-8dbd2ae03d24">
+
+## Level 20 > 21 
+
+There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+NOTE: Try connecting to your own network daemon to see if it works as you think
+
+
 
