@@ -146,4 +146,28 @@ Todėl naudoju base64 -d data.txt.
 
 The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
 
+Čia tiesiog pastūmėme didžiąsias ir mažąsias raides į šoną 13 kartų.
+
+<img width="489" alt="Screenshot 2024-07-22 at 12 07 48" src="https://github.com/user-attachments/assets/e3516733-dfd9-44a4-86d2-61f917a1ebfa">
+
+## Level 12 > 13
+
+The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv
+
+Komandas naudojau kurios skirtos failų suspaudimui, išskleidimui ir hexdump peržiūrai. Komanda xxd sukuria hexdump failo vaizdą arba atkuria failą iš hexdump. Komanda gzip ir bzip2 suspaudžia failus arba išskleidžia juos su -d taikomos failams su .gz ir .bz2 plėtiniais. Komanda tar sukuria archyvus su -cf flagu ir išskleidžia juos su -xf flagu, dažniausiai naudojama dirbant su .tar failais.
+
+<img width="489" alt="Screenshot 2024-07-22 at 12 33 15" src="https://github.com/user-attachments/assets/2c9d7dc4-bd7b-407c-a3ce-cb05d84c318e">
+
+## Level 13 > 14 
+
+The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on
+
+Prisijungiau prie bandit14 per ssh -i sshkey.private bandit14@localhost -p 2220 
+
+Ir zinodemas kur yra pasleptas slaptazodis atidariau su cat /etc/bandit_pass/bandit14
+
+<img width="485" alt="Screenshot 2024-07-22 at 12 45 54" src="https://github.com/user-attachments/assets/42548c7b-b024-4e95-a5b1-0ab5fe25c6c7">
+
+
+## Level 14 > 15 
 
