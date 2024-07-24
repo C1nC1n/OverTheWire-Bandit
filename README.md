@@ -99,7 +99,7 @@ Tačiau gaunu daug klaidų dėl leidimų (Permission denied), todėl pridedu 2>/
 
 The password for the next level is stored in the file data.txt next to the word millionth
 
-Atidarius data.txt pasipyle daug vardu ir slaptazodziu tai tiesiog atrinkti millionth naudojau grep komanda
+Atidarius data.txt puslapyje daug vardu ir slaptažodziu tai tiesiog atrinkti millionth naudojau grep komanda
 
 cat data.txt | grep millionth 
 
@@ -154,7 +154,7 @@ The password for the next level is stored in the file data.txt, where all lowerc
 
 The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv
 
-Komandas naudojau kurios skirtos failų suspaudimui, išskleidimui ir hexdump peržiūrai. Komanda xxd sukuria hexdump failo vaizdą arba atkuria failą iš hexdump. Komanda gzip ir bzip2 suspaudžia failus arba išskleidžia juos su -d taikomos failams su .gz ir .bz2 plėtiniais. Komanda tar sukuria archyvus su -cf flagu ir išskleidžia juos su -xf flagu, dažniausiai naudojama dirbant su .tar failais.
+Komandas naudojau kurios skirtos failų suspaudimui, išskleidimui ir hexdump peržiūrai. Komanda xxd sukuria hexdump failo vaizdą. Komanda gzip ir bzip2 suspaudžia failus su .gz ir .bz2. Komanda tar sukuria archyvus su -cf flagu ir išskleidžia juos su -xf flagu, dažniausiai naudojama dirbant su .tar failais.
 
 <img width="489" alt="Screenshot 2024-07-22 at 12 33 15" src="https://github.com/user-attachments/assets/2c9d7dc4-bd7b-407c-a3ce-cb05d84c318e">
 
@@ -164,7 +164,7 @@ The password for the next level is stored in /etc/bandit_pass/bandit14 and can o
 
 Prisijungiau prie bandit14 per ssh -i sshkey.private bandit14@localhost -p 2220 
 
-Ir zinodemas kur yra pasleptas slaptazodis atidariau su cat /etc/bandit_pass/bandit14
+Ir žinodamas kur yra pasleptas slaptažodis atidariau su cat /etc/bandit_pass/bandit14
 
 <img width="485" alt="Screenshot 2024-07-22 at 12 45 54" src="https://github.com/user-attachments/assets/42548c7b-b024-4e95-a5b1-0ab5fe25c6c7">
 
@@ -214,7 +214,7 @@ Tiesiog ssh bandit18@bandit.labs.overthewire.org -p 2220 pridedu cat readme ir s
 
 To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
 
-19 lygyje setuid yra naudojau, nes ji uteiktia specialias teises programai, kad ji galėtų pasiekti išteklius ar atlikti veiksmus, kurių įprastai naudotojas negalėtų atlikti dėl leidimų apribojimų.
+19 lygyje setuid naudojau, nes suteiktia teises programai, kad galėtų atidaryti ar atlikti veiksmus, kurių įprastai naudotojas negalėtų atlikti dėl leidimų apribojimų.
 
 <img width="487" alt="Screenshot 2024-07-22 at 17 32 11" src="https://github.com/user-attachments/assets/7ad8042f-716c-469c-a2a4-8dbd2ae03d24">
 
@@ -224,5 +224,47 @@ There is a setuid binary in the homedirectory that does the following: it makes 
 
 NOTE: Try connecting to your own network daemon to see if it works as you think
 
+Kaip supratau tai su netcatu reikia padaryti listening porta pvz 5555 ir naudoju echo kaip kad gautu sena slaptažodi. Dar pasijungiau kita terminala prisijungiau prie bandit20 ir prisijungiau prie porto su ./suconnect 5555 ir gavau slaptazodi.
+
+<img width="629" alt="Screenshot 2024-07-24 at 13 39 35" src="https://github.com/user-attachments/assets/912b12cd-18e4-46ef-80dd-60c2cecefd1d">
+
+## Level 21 > 22
+
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+Tiesiog pasiziūrėjau kas dirba tam faile cron.d ir radau cronjob_bandit22 ko man ir reikia. Cat komanda parodo kad cron vykdo /usr/bin/cronjob_bandit22.sh . Pasižiurime  bash faila kuris sukuria failą aplanke „tmp“ ir visiems suteikia leidimą skaityti. Tada jis nukopijuoja bandit22 slaptažodžio failo įvestį į naujai sukurtą failą.
+
+<img width="458" alt="Screenshot 2024-07-24 at 13 50 48" src="https://github.com/user-attachments/assets/65cf6b1b-1125-412a-8739-9273ae0a525c">
+
+## Level 22 > 23
+
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
+
+Pasižiuriu kur scriptas parasytas,  atidarau ji ir matau kad galime pakeisti $myname i bandit23 ir gausime kur yra /tmp aplinkoje slaptazodis tai ir padarom ir gauname po cat komandos i /tmp/$mytarget bandit 24 slaptazodi.
+
+<img width="459" alt="Screenshot 2024-07-24 at 14 30 11" src="https://github.com/user-attachments/assets/af7c0aa6-3a7c-4151-8f68-44478eac7f2f">
+
+## Level 23 > 24
+
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
+
+NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…
+
+Uztrukau ilgokai, bet sukuriau /tmp/padekdieve ir sukuriau scripta slaptikas.sh su #!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/padekdieve/slaptikas.txt
+
+dar su chmod reikia pazaisti kad galetum vykdyti scriptus ir t.t
+
+
+<img width="483" alt="Screenshot 2024-07-24 at 17 46 01" src="https://github.com/user-attachments/assets/36c6f91d-d722-4f57-83fd-0ffa9429a397">
+
+## Level 24 > 25
+
+A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+You do not need to create new connections each time
 
 
