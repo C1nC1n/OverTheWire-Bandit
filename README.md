@@ -242,7 +242,7 @@ A program is running automatically at regular intervals from cron, the time-base
 
 NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
 
-Pasižiuriu kur scriptas parasytas,  atidarau ji ir matau kad galime pakeisti $myname i bandit23 ir gausime kur yra /tmp aplinkoje slaptazodis tai ir padarom ir gauname po cat komandos i /tmp/$mytarget bandit 24 slaptazodi.
+Pasižiuriu kur scriptas parasytas, atidarau ji ir matau kad galime pakeisti $myname i bandit23 ir gausime kur yra /tmp aplinkoje slaptazodis tai ir padarom ir gauname po cat komandos i /tmp/$mytarget bandit 24 slaptazodi.
 
 <img width="459" alt="Screenshot 2024-07-24 at 14 30 11" src="https://github.com/user-attachments/assets/af7c0aa6-3a7c-4151-8f68-44478eac7f2f">
 
@@ -267,4 +267,8 @@ dar su chmod reikia pazaisti kad galetum vykdyti scriptus ir t.t
 A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
 You do not need to create new connections each time
 
+Užtrukau, nes norėjau pasimokyti bash skriptinimo pradmenų. Taigi, skriptas buvo skirtas brute-force, tiesiog spėjo slaptažodį (nuo 0000 iki 9999) ir tuo pačiu metu klausėsi porto 30002.
+
+
+<img width="483" alt="Screenshot 2024-07-29 at 13 04 39" src="https://github.com/user-attachments/assets/5e26633b-760a-4964-9726-26062a5c6bf4">
 
